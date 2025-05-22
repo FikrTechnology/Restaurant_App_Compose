@@ -81,4 +81,7 @@ dependencies {
 
     // Koin untuk Jetpack Compose
     implementation(libs.koin.androidx.compose)
+
+    // Coil untuk Jetpack Compose
+    implementation(libs.coil.compose)
 }

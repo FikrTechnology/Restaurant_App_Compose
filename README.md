@@ -101,8 +101,7 @@ It’s designed to be readable, testable, and easily extensible – ideal as a t
 
 If you're an HR, recruiter, or fellow developer looking to collaborate, feel free to reach out!
 
-* 💼 [LinkedIn](https://linkedin.com/in/yourprofile)
-* ✉️ [your.email@example.com](mailto:your.email@example.com)
+* 💼 [LinkedIn](https://linkedin.com/in/muhammad-fikrie-91734517a)
 
 ---
 

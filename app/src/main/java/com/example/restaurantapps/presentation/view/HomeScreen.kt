@@ -18,13 +18,37 @@ import com.example.restaurantapps.presentation.viewmodel.RestaurantViewModel
 import com.example.restaurantapps.ui.component.RestaurantInformation
 import org.koin.androidx.compose.koinViewModel
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(viewModel: RestaurantViewModel = koinViewModel()) {
     val restaurants by viewModel.restaurant.collectAsState()
+    var searchQuery by remember { mutableStateOf("") }
+
+    val filteredRestaurants = restaurants.filter {
+        it.name.contains(searchQuery, ignoreCase = true)
+    }
 
     Scaffold(
         modifier = Modifier.safeDrawingPadding(),
         contentWindowInsets = WindowInsets(0, 0, 0, 0),
+
+        topBar = {
+            TextField(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                value = searchQuery,
+                onValueChange = { searchQuery = it },
+                placeholder = { Text("Search Restaurants") },
+                singleLine = true,
+                colors = TextFieldDefaults.colors(
+                    focusedIndicatorColor = Color.Transparent,
+                    unfocusedIndicatorColor = Color.Transparent,
+                    focusedContainerColor = Color.White,
+                    unfocusedContainerColor = Color.White
+                )
+            )
+        }
     ) {paddingValues ->
 
         Box(
@@ -40,7 +64,7 @@ fun HomeScreen(viewModel: RestaurantViewModel = koinViewModel()) {
                 verticalArrangement = Arrangement.spacedBy(8.dp),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                items(restaurants) { restaurant ->
+                items(filteredRestaurants) { restaurant ->
                     Card(
                         modifier = Modifier
                             .fillMaxWidth()
